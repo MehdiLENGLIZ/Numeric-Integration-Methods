@@ -4,38 +4,38 @@ import numpy as np
 
 
 def R(f, a, b):
-    """Rechteckregel"""
+    """rectangle rule"""
     return (b-a) * f((a+b)/2)
 
 
 def T(f, a, b):
-    """Trapezregel"""
+    """trapezoid rule"""
     return 1/2 * (b-a) * (f(a) + f(b))
 
 
 def S(f, a, b):
-    """Simpsonregel"""
+    """Simpson rule"""
     return (b-a)/6 * (f(a) + f(b) + 4*f((a+b)/2))
 
 # Rh, Th and Sh are functions that return the summed variants of these approximations with n equally wide subintervals
 
 
 def Rh(f, a, b, n):
-    """Rechteckregel"""
+    """rectangle rule"""
     h = (b - a) / n  # width of each subinterval
     # The summed rectangle rule
     return h * sum(f(a + i * h + h / 2) for i in range(n))
 
 
 def Th(f, a, b, n):
-    """Trapezregel"""
+    """trapezoid rule"""
     h = (b - a) / n  # width of each subinterval
     # The summed trapezoid rule
     return h * ((f(a) + f(b)) / 2 + sum(f(a + i * h) for i in range(1, n)))
 
 
 def Sh(f, a, b, n):
-    """Simpsonregel"""
+    """Simpson rule"""
     h = (b - a) / n  # width of each subinterval
     # The summed Simpson rule
     return h/6 * (f(a) + f(b) + 2 * sum(f(a + i * h) for i in range(1, n)) + 4 * sum(f(a + i * h + h/2) for i in range(0, n)))
